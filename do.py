@@ -86,6 +86,7 @@ if args.run:
         '--name=openssh-server',
         '-e', 'PUID=1000',
         '-e', 'PGID=1000',
+        '-e', 'USER_NAME=q',
         '-v', f'{DIR}/volume:/volume',
         '--restart', 'unless-stopped',
         *extra_args,
