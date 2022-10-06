@@ -75,6 +75,7 @@ if args.pull:
     invoke('docker pull linuxserver/openssh-server')
 
 if args.run:
+    os.makedirs('config', exist_ok=True)
     os.makedirs('volume', exist_ok=True)
     if os.path.exists('run_extra_args.txt'):
         with open('run_extra_args.txt') as f:
@@ -87,6 +88,7 @@ if args.run:
         '-e', 'PUID=1000',
         '-e', 'PGID=1000',
         '-e', 'USER_NAME=q',
+        '-v', f'{DIR}/config:/config',
         '-v', f'{DIR}/volume:/volume',
         '--restart', 'unless-stopped',
         *extra_args,
