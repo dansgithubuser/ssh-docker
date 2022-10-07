@@ -76,7 +76,6 @@ if args.pull:
 
 if args.run:
     os.makedirs('config', exist_ok=True)
-    os.makedirs('volume', exist_ok=True)
     if os.path.exists('run_extra_args.txt'):
         with open('run_extra_args.txt') as f:
             extra_args = f.read().split()
@@ -89,7 +88,6 @@ if args.run:
         '-e', 'PGID=1000',
         '-e', 'USER_NAME=q',
         '-v', f'{DIR}/config:/config',
-        '-v', f'{DIR}/volume:/volume',
         '--restart', 'unless-stopped',
         *extra_args,
         'linuxserver/openssh-server',
